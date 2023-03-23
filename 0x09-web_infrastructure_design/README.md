@@ -2,21 +2,21 @@
 
 ## Concepts
 
-[DNS](https://intranet.alxswe.com/concepts/12)
-[Monitoring](https://intranet.alxswe.com/concepts/13)
-[Web Server](https://intranet.alxswe.com/concepts/17)
-[Network basics](https://intranet.alxswe.com/concepts/33)
-[Load balancer](https://intranet.alxswe.com/concepts/46)
-[Server](https://intranet.alxswe.com/concepts/67)
-[What is a Database?](https://www.techtarget.com/searchdatamanagement/definition/database)
-[Whats the difference between Web and App Server?](https://www.youtube.com/watch?v=S97eKyv2b9M)
-[DNS record types](https://pressable.com/?s=DNS&post_type=knowledgebase)
-[Single point of failure](https://en.wikipedia.org/wiki/Single_point_of_failure)
-[How to avoid downtime when deploying new code](https://softwareengineering.stackexchange.com/questions/35063/how-do-you-update-your-production-codebase-database-schema-without-causing-downt#answers-header)
-[High availability cluster (active-active/active-passive)](https://docs.oracle.com/cd/E17904_01/core.1111/e10106/intro.htm#ASHIA712)
-[What is HTTPS](https://www.instantssl.com/http-vs-https)
-[What is a firewall](https://www.webopedia.com/definitions/firewall/)
-[Application server vs web server](https://www.nginx.com/resources/glossary/application-server-vs-web-server/)
+ - [DNS](https://intranet.alxswe.com/concepts/12)
+ - [Monitoring](https://intranet.alxswe.com/concepts/13)
+ - [Web Server](https://intranet.alxswe.com/concepts/17)
+ - [Network basics](https://intranet.alxswe.com/concepts/33)
+ - [Load balancer](https://intranet.alxswe.com/concepts/46)
+ - [Server](https://intranet.alxswe.com/concepts/67)
+ - [What is a Database?](https://www.techtarget.com/searchdatamanagement/definition/database)
+ - [Whats the difference between Web and App Server?](https://www.youtube.com/watch?v=S97eKyv2b9M)
+ - [DNS record types](https://pressable.com/?s=DNS&post_type=knowledgebase)
+ - [Single point of failure](https://en.wikipedia.org/wiki/Single_point_of_failure)
+ - [How to avoid downtime when deploying new code](https://softwareengineering.stackexchange.com/questions/35063/how-do-you-update-your-production-codebase-database-schema-without-causing-downt#answers-header)
+ - [High availability cluster (active-active/active-passive)](https://docs.oracle.com/cd/E17904_01/core.1111/e10106/intro.htm#ASHIA712)
+ - [What is HTTPS](https://www.instantssl.com/http-vs-https)
+ - [What is a firewall](https://www.webopedia.com/definitions/firewall/)
+ - [Application server vs web server](https://www.nginx.com/resources/glossary/application-server-vs-web-server/)
 
 ## Tasks
 
@@ -125,4 +125,4 @@ Moving each of the major components to its own server, means that more servers w
 
 ## Author
 
-**SAMUEL GODWIN
+**SAMUEL GODWIN**
