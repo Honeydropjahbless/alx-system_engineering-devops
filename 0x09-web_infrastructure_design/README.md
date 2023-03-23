@@ -20,7 +20,7 @@
 
 ## Tasks
 
- 0. Simple web stack
+ ### 0. Simple web stack
 
 ## Description
 
