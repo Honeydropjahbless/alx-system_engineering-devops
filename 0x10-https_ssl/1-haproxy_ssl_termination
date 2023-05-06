@@ -61,12 +61,12 @@ frontend ALL
 ###########################################
 backend web_servers
         balance roundrobin
-        server 185362-web-01 54.172.59.214:80 check
-        server 185362-web-02 3.83.245.62:80:80 check
+        server 172507-web-01 54.172.59.214:80 check
+        server 172507-web-02 3.83.245.62:80:80 check
 
 listen http-in
         bind :80
         balance roundrobin
-        server 185362-web-01 54.172.59.214:80 check
-        server 185362-web-02 3.83.245.62:80 check
+        server 172507-web-01 54.172.59.214:80 check
+        server 172507-web-02 3.83.245.62:80 check
 
