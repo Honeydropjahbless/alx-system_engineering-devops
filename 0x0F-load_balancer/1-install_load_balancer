@@ -33,13 +33,13 @@ defaults
   timeout connect 10s
   timeout server 15s
   timeout http-request 10s
-frontend clickviral-tech-frontend
+frontend Honeydropjahbless-tech-frontend
     bind *:80
-    default_backend clickviral-tech-backend
-backend clickviral-tech-backend
+    default_backend Honeydropjahbless-tech-backend
+backend Honeydropjahbless-tech-backend
     balance roundrobin
-    server 151666-web-01 34.232.68.152:80 check
-    server 151666-web-02 3.83.227.80:80 check
+    server 172507-web-01 52.3.243.157:80 check
+    server 172507-web-02 3.83.245.62:80 check
 "
 
 # shellcheck disable=SC2154
