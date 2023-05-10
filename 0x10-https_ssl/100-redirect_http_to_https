@@ -1,71 +1,45 @@
 global
-  log         127.0.0.1 syslog
-  maxconn     1000
-  user        haproxy
-  group       haproxy
-  daemon
-  tune.ssl.default-dh-param 4096
-  ssl-default-bind-options no-sslv3 no-tls-tickets
-  ssl-default-bind-ciphers EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
+        log /dev/log    local0
+        log /dev/log    local1 notice
+        chroot /var/lib/haproxy
+        stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
+        stats timeout 30s
+        user haproxy
+        group haproxy
+        daemon
 
+        # Default SSL material locations
+        ca-base /etc/ssl/certs
+        crt-base /etc/ssl/private
+
+        # See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
+        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-S>
+        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
 
 defaults
-  log  global
-  mode  http
-  option  httplog
-  option  dontlognull
-  option  http-server-close
-  option  forwardfor except 127.0.0.0/8
-  option  redispatch
-  option  contstats
-  retries  3
-  timeout  http-request 10s
-  timeout  queue 1m
-  timeout  connect 10s
-  timeout  client 1m
-  timeout  server 1m
-  timeout  check 10s
+  mode http
+  timeout client 15s
+  timeout connect 10s
+  timeout server 15s
+  timeout http-request 10s
+frontend Honeydropjahbless-tech-frontend
+    bind *:80
+    ## ssl
+    bind *:443 ssl crt /etc/ssl/certs/www.honeydropjahbless.tech/www.honeydropjahbless.tech.pem
+    http-request redirect scheme https unless { ssl_fc }
+
+    # Let's encrypt validation path
+    acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+    use_backend letsencrypt-backend if letsencrypt-acl
 
 
-###########################################
-#
-# HAProxy Stats page
-#
-###########################################
-listen stats
-  bind *:9090
-  mode  http
-  maxconn  10
-  stats  enable
-  stats  hide-version
-  stats  realm Haproxy\ Statistics
-  stats  uri /
-  stats  auth admin:admin
+    default_backend Honeydropjahbless-tech-backend
 
-###########################################
-#
-# Front end for all
-#
-###########################################
-frontend ALL
-  bind   *:80
-  bind   *:443 ssl crt /etc/haproxy/certs/honeydropjahbless.tech.pem crt /etc/haproxy/certs/www.honeydropjahbless.tech.pem
-  mode   http
-        redirect scheme https if !{ ssl_fc }
-        default_backend web_servers
+backend Honeydropjahbless-tech-backend
+    balance roundrobin
+    server 172507-web-01 52.3.243.157:80 check
+    server 172507-web-02 3.83.245.62:80 check
 
-###########################################
-#
-# backend end for all
-#
-###########################################
-backend web_servers
-        balance roundrobin
-        server 172507-web-01 54.172.59.214:80 check
-        server 172507-web-02 3.83.245.62:80 check
-
-listen http-in
-        bind :80
-        balance roundrobin
-        server 172507-web-01 54.172.59.214:80 check
-        server 172507-web-02 3.83.245.62:80 check
+backend letsencrypt-backend
+    server certbot 127.0.0.1:8888
